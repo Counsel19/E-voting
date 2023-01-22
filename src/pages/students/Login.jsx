@@ -30,7 +30,7 @@ const Login = () => {
     if (user && user.role === "admin") {
       navigate("/admin");
     } else {
-      navigate("/users");
+      navigate("/students");
     }
     setLoading(false);
   };

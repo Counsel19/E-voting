@@ -178,6 +178,16 @@ const AppContextProvider = ({ children }) => {
       });
     }
   };
+  const addVote = async (candidateInfo) => {
+    try {
+      const res = await authFetch.post("/vote", candidateInfo);
+    } catch (error) {
+      dispatch({
+        type: ACTIONS.SET_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+  };
   const logout = () => {
     dispatch({ type: ACTIONS.LOGOUT });
     removeUserFromLocalStorage();
@@ -205,6 +215,7 @@ const AppContextProvider = ({ children }) => {
         logout,
         clearMessage,
         getStudents,
+        addVote,
         getCandidates,
         addCandidates,
         clearFilters,

@@ -11,7 +11,6 @@ import UserProtectedRoute from "./routes/UserProtectedRoute";
 import UserLayout from "./layout/UserLayout";
 import Home from "./pages/students/Home";
 import List from "./pages/students/List";
-import Positions from "./pages/students/Candidates";
 import VoteCandidate from "./pages/students/VoteCandidate";
 import UserRedirect from "./routes/UserRedirect";
 import Login from "./pages/students/Login";
@@ -49,7 +48,7 @@ function App() {
             path="candidates"
             element={<List studentsRoute={true} advisor />}
           />
-          <Route path="positions" element={<Positions />} />
+          
           <Route path="vote/:id" element={<VoteCandidate />} />
         </Route>
 

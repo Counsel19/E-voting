@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Candidate = ({ photo, firstname, lastname, level }) => {
   return (
-    <Link to="" className="flex items-center gap-4 border-b-2 py-4">
+    <Link to="/students/vote/1" className="flex items-center gap-4 border-b-2 py-4">
       <div className="flex items-center border-2 h-16 w-16 border-blue-700 justify-center px-3 py-3 rounded-full">
         <img src={photo} alt={firstname} />
       </div>
