@@ -15,6 +15,7 @@ import VoteCandidate from "./pages/students/VoteCandidate";
 import UserRedirect from "./routes/UserRedirect";
 import Login from "./pages/students/Login";
 import AllStudents from "./pages/admin/AllStudents";
+import LoginAdmin from "./pages/students/LoginAdmin";
 
 function App() {
   return (
@@ -57,6 +58,14 @@ function App() {
           element={
             <UserRedirect>
               <Login />
+            </UserRedirect>
+          }
+        />
+        <Route
+          path="/login-admin"
+          element={
+            <UserRedirect>
+              <LoginAdmin />
             </UserRedirect>
           }
         />

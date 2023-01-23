@@ -1,19 +1,32 @@
 import React from "react";
 import { useState } from "react";
 import FUTOLogo from "../../assets/images/FUTO_logo.png";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { TailSpin } from "react-loader-spinner";
 import { useAppContext } from "../../context/AppContext";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const init = {
+  regNum: "",
+  password: "",
+};
+
+const LoginAdmin = () => {
+  const [type, setType] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(init);
   const { login } = useAppContext();
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    setInput({ ...input, [name]: value });
+  };
 
   const handleLogin = async () => {
     e.preventDefault();
     setLoading(true);
-    const user = await login({ regNum: input });
+    const user = await login(input);
 
     if (user && user.role === "admin") {
       navigate("/admin");
@@ -31,10 +44,28 @@ const Login = () => {
           <label className="text-xs">Reg No.</label>
           <input
             type="text"
-            onChange={(e) => setInput(e.target.value)}
-            value={input}
+            onChange={handleChange}
+            value={input.regNum}
             className="outline-none  h-8"
           />
+        </div>
+        <div className="flex  items-center border-b-2">
+          <div className="flex flex-col">
+            <label className="text-xs">Password</label>
+            <input
+              type={type ? "password" : "text"}
+              className="outline-none h-8"
+              onChange={handleChange}
+              value={input.password}
+            />
+          </div>
+          <span onClick={() => setType(!type)}>
+            {type ? (
+              <AiOutlineEye size={23} />
+            ) : (
+              <AiOutlineEyeInvisible size={23} />
+            )}
+          </span>
         </div>
 
         <button
@@ -47,9 +78,9 @@ const Login = () => {
         </button>
 
         <p>
-          Are you an admin?{" "}
-          <Link to="/login-admin" className="text-blue-500">
-            Admin Login
+          Not an Admin?{" "}
+          <Link to="/" className="text-blue-500">
+            Student Login
           </Link>
         </p>
       </form>
@@ -57,4 +88,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginAdmin;
